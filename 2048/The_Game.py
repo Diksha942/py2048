@@ -4,7 +4,7 @@ import time
 import copy
 import math
 
-def print_game(game_map):
+def print_game(game_map): #print the game map
     print("\n")
     for i in range(n):
         for j in range(n):
@@ -20,7 +20,7 @@ def print_game(game_map):
                 print(game_map[i][j], end="  ")
         print(end="\n")
 
-def adj_same(g):
+def adj_same(g): #check if adjacents are same
     for i in range(len(g)-1):
         for j in range(len(g)-1):
             if j==0 and i!=j:
@@ -50,7 +50,7 @@ def adj_same(g):
                     return(g,False)
     return(g,False)
 
-def generate_2(game_map):
+def generate_2(game_map): #generate a random 2
     a=rm.randint(0,n-1)
     b=rm.randint(0,n-1)
     if game_map[a][b]==0:
@@ -70,7 +70,7 @@ def generate_2(game_map):
     return(game_map,True)
 
 
-def move_up(game_b):
+def move_up(game_b):  #The Move up command
     for i in range(len(game_b)):
         a=[]
         b=[]
@@ -94,7 +94,7 @@ def move_up(game_b):
 def clear():
     os.system('cls')
 
-def move_down(game_b):
+def move_down(game_b): #The move down command
     for i in range(len(game_b)):
         a=[]
         b=[]
@@ -115,7 +115,7 @@ def move_down(game_b):
             game_b[len(game_b)-j-1][i]=b[len(b)-j-1]
     return(game_b)
 
-def move_left(game_b):
+def move_left(game_b): #The move left command
     game=copy.deepcopy(game_b)
     for row in game:
         a=[]
@@ -137,7 +137,7 @@ def move_left(game_b):
             row[j]=b[j]
     return(game)
                
-def move_right(game_b):
+def move_right(game_b): #The move right command
     game=copy.deepcopy(game_b)
     for row in game:
         a=[]
@@ -160,7 +160,7 @@ def move_right(game_b):
     return(game)
                
         
-def keys(game_brd):
+def keys(game_brd): #inputting the keys
     k=input()
     if k.lower()=="w":
         clear()
@@ -190,7 +190,9 @@ game = [[0 for i in range(n)] for i in range(n)]
 test_game=[[] for i in range(n)]
 play=True
 while play:
+    #generating a random 2
     game,value=(generate_2(game))
+    #if not space to generate a 2, then checking if it hass got any adjacent same no.
     if  not value:
         game,val = adj_same(game)
         if not val:
@@ -199,6 +201,7 @@ while play:
             time.sleep(10)
             play=False
     print_game(game)
+    #getting a copy to check for invalid move
     test_game=copy.deepcopy(game)
     game,key=keys(game)
     if not key:
