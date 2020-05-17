@@ -3,8 +3,7 @@ import os
 import time
 import copy
 import math
-
-def print_game(game_map): #print the game map
+def print_game(game_map):
     print("\n")
     for i in range(n):
         for j in range(n):
@@ -20,7 +19,7 @@ def print_game(game_map): #print the game map
                 print(game_map[i][j], end="  ")
         print(end="\n")
 
-def adj_same(g): #check if adjacents are same
+def adj_same(g):
     for i in range(len(g)-1):
         for j in range(len(g)-1):
             if j==0 and i!=j:
@@ -50,7 +49,7 @@ def adj_same(g): #check if adjacents are same
                     return(g,False)
     return(g,False)
 
-def generate_2(game_map): #generate a random 2
+def generate_2(game_map):
     a=rm.randint(0,n-1)
     b=rm.randint(0,n-1)
     if game_map[a][b]==0:
@@ -69,8 +68,7 @@ def generate_2(game_map): #generate a random 2
             return(game_map,False)
     return(game_map,True)
 
-
-def move_up(game_b):  #The Move up command
+def move_up(game_b):
     for i in range(len(game_b)):
         a=[]
         b=[]
@@ -90,11 +88,12 @@ def move_up(game_b):  #The Move up command
         for j in range(len(b)):
             game_b[j][i]=b[j]
     return(game_b)
-
+                   
 def clear():
     os.system('cls')
-
-def move_down(game_b): #The move down command
+                  
+                
+def move_down(game_b):
     for i in range(len(game_b)):
         a=[]
         b=[]
@@ -114,8 +113,8 @@ def move_down(game_b): #The move down command
         for j in range(len(b)):
             game_b[len(game_b)-j-1][i]=b[len(b)-j-1]
     return(game_b)
-
-def move_left(game_b): #The move left command
+                       
+def move_left(game_b):
     game=copy.deepcopy(game_b)
     for row in game:
         a=[]
@@ -137,7 +136,7 @@ def move_left(game_b): #The move left command
             row[j]=b[j]
     return(game)
                
-def move_right(game_b): #The move right command
+def move_right(game_b):
     game=copy.deepcopy(game_b)
     for row in game:
         a=[]
@@ -160,7 +159,7 @@ def move_right(game_b): #The move right command
     return(game)
                
         
-def keys(game_brd): #inputting the keys
+def keys(game_brd):
     k=input()
     if k.lower()=="w":
         clear()
@@ -184,51 +183,57 @@ def keys(game_brd): #inputting the keys
         return(game_brd,False)
         
 global n, game, w
-n=int(input("Enter size "))
-w=int(input("Enter the no. till which u wish to play "))
-game = [[0 for i in range(n)] for i in range(n)]
-test_game=[[] for i in range(n)]
-play=True
-while play:
-    #generating a random 2
-    game,value=(generate_2(game))
-    #if not space to generate a 2, then checking if it hass got any adjacent same no.
-    if  not value:
-        game,val = adj_same(game)
-        if not val:
-            print_game(game)
-            print("Game Over")
-            time.sleep(10)
-            play=False
-    print_game(game)
-    #getting a copy to check for invalid move
-    test_game=copy.deepcopy(game)
-    game,key=keys(game)
-    if not key:
-        print_game(game)
-        game,_=keys(game)
-    if key:
-        if game==test_game:
-            _,value=(generate_2(game))
-            if  not value:
-                game,val = adj_same(game)
-                if not val:
-                    print_game(game)
-                    print("Game Over")
-                    time.sleep(10)
-                    play=False
-            else:
-                print("Invalid Move")
+resume_game=True
+while resume_game:
+    n=int(input("Enter size "))
+    w=int(input("Enter the no. till which u wish to play "))
+    game = [[0 for i in range(n)] for i in range(n)]
+    test_game=[[] for i in range(n)]
+    play=True
+    while play:
+        game,value=(generate_2(game))
+        if  not value:
+            game,val = adj_same(game)
+            if not val:
                 print_game(game)
-                game,_=keys(game)
-    for i in range(n):
-        for j in range(n):
-            if game[i][j]==w:
-                print_game(game)
-                print("You win")
-                time.sleep(6)
+                print("Game Over")
                 play=False
-                break
-            else:
-                continue
-            
+        print_game(game)
+        test_game=copy.deepcopy(game)
+        game,key=keys(game)
+        if not key:
+            print_game(game)
+            game,_=keys(game)
+        if key:
+            if game==test_game:
+                _,value=(generate_2(game))
+                if  not value:
+                    game,val = adj_same(game)
+                    if not val:
+                        print_game(game)
+                        print("Game Over")
+                        time.sleep(1)
+                        play=False
+                else:
+                    print("Invalid Move")
+                    print_game(game)
+                    game,_=keys(game)
+        for i in range(n):
+            for j in range(n):
+                if game[i][j]==w:
+                    print_game(game)
+                    print("You win")
+                    play=False
+                    break
+                else:
+                    continue
+    ans=input("You wanna play that again??? (Y/N)  ")
+    if ans.lower()=='y':
+        time.sleep(1)
+        print("Ooo, nice, here it goes...")
+        time.sleep(1)
+    if ans.lower()=='n':
+        time.sleep(1)
+        print("Okie Dokie, boi boiiii....")
+        time.sleep(3)
+        resume_game=False
