@@ -2,12 +2,22 @@ import random as rm
 import os
 import time
 import copy
+import math
 
 def print_game(game_map):
     print("\n")
     for i in range(n):
         for j in range(n):
-            print(game_map[i][j], end="    ")
+            if game_map[i][j]==0:
+                print(game_map[i][j], end="     ")
+            elif math.log(game_map[i][j],10)<1 and math.log(game_map[i][j],10)>0:
+                print(game_map[i][j], end="     ")
+            elif math.log(game_map[i][j],10)<2 and math.log(game_map[i][j],10)>1:
+                print(game_map[i][j], end="    ")
+            elif math.log(game_map[i][j],10)<3 and math.log(game_map[i][j],10)>2:
+                print(game_map[i][j], end="   ")
+            elif math.log(game_map[i][j],10)<4 and math.log(game_map[i][j],10)>3:
+                print(game_map[i][j], end="  ")
         print(end="\n")
 
 def adj_same(g):
@@ -59,6 +69,7 @@ def generate_2(game_map):
             return(game_map,False)
     return(game_map,True)
 
+
 def move_up(game_b):
     for i in range(len(game_b)):
         a=[]
@@ -79,11 +90,10 @@ def move_up(game_b):
         for j in range(len(b)):
             game_b[j][i]=b[j]
     return(game_b)
-                   
+
 def clear():
     os.system('cls')
-                  
-                
+
 def move_down(game_b):
     for i in range(len(game_b)):
         a=[]
@@ -104,7 +114,7 @@ def move_down(game_b):
         for j in range(len(b)):
             game_b[len(game_b)-j-1][i]=b[len(b)-j-1]
     return(game_b)
-                       
+
 def move_left(game_b):
     game=copy.deepcopy(game_b)
     for row in game:
