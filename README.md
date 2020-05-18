@@ -1,4 +1,4 @@
-# py2048
+# py2048 (Windows OS)
 The file 2048 in the repo contains The_Game.py, the python code for the game 2048</br>
 As we proceed to run the program, it asks us the **Grid Size** and **The no. till which we want</br> to run the game**
 (the no. being an power of 2). Pressing enter gives us the board of entered </br>size and a randomly spawned 2</br>
