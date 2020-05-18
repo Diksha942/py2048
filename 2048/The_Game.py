@@ -3,6 +3,7 @@ import os
 import time
 import copy
 import math
+import msvcrt
 def print_game(game_map):
     print("\n")
     for i in range(n):
@@ -160,20 +161,20 @@ def move_right(game_b):
                
         
 def keys(game_brd):
-    k=input()
-    if k.lower()=="w":
+    k=msvcrt.getch()
+    if k.lower()==b"w":
         clear()
         game_brd=move_up(game_brd)
         return(game_brd,True)
-    elif k.lower()=="s":
+    elif k.lower()==b"s":
         clear()
         game_brd=move_down(game_brd)
         return(game_brd,True)
-    elif k.lower()=="a":
+    elif k.lower()==b"a":
         clear()
         game_brd=move_left(game_brd)
         return(game_brd,True)
-    elif k.lower()=="d":
+    elif k.lower()==b"d":
         clear()
         game_brd=move_right(game_brd)
         return(game_brd,True)
