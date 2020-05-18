@@ -16,7 +16,7 @@ At last, plying **D** </br></br>
 If the matrix remains same after playing a move, the game shows **Invalid Move**</br></br>
 ![](Screenshots/some%20other%20key.png)</br>
 When entered a key other than WASD, it shows us Invalid Input and asks for a valid one</br></br>
-On running out of spaces to spawn a 2 with no adjacent elements before reaching the no. that we initially</br> entered, It displays...</br>
+On running out of empty spaces and same adjacent elements, before reaching the given no. </br> _we need to play one more move to display **Game Over**_</br>
 ![](Screenshots/game%20over.png)</br>
 And asks us wheather we want to **Play Again** </br>If we input **Y**, it restarts the game</br> If the input's **N**. It says 
 **Okie Dokie, boi boiii...**
